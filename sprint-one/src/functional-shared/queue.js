@@ -2,7 +2,7 @@ var Queue = function(){
   // Hey! Rewrite in the new style. Your code will wind up looking very similar,
   // but try not not reference your old code in writing the new style.
   
-  //someinstance is this: 
+  //someinstance is 
   var someInstance= {
     enqueue: queueMethods.enqueue,
     dequeue: queueMethods.dequeue,
@@ -17,7 +17,6 @@ var queueMethods= {
   enqueue: function(value) {   
     var currLoc= this.size(); 
     this.storage[currLoc]= value; 
-    console.log('my size after enqueue', this.size()); 
 
   },
   dequeue: function () {
@@ -34,7 +33,6 @@ var queueMethods= {
     //delete the extra last key
     delete this.storage[end]; 
 
-    console.log('my size after deque', this.size()); 
     //return the removed value
     return item; 
 
@@ -50,5 +48,3 @@ var queueMethods= {
 };
 
  
-// var newQueue= new Queue; // someinstance obj  {enqueue, dequueu, size}
-// newQueue.size(); // this: newQueue
