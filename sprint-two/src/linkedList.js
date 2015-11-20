@@ -28,8 +28,6 @@ var LinkedList = function(){
     } else {
       originalHead= list.head.value; 
       list.head= list.head.next;
-      
-      
     }
     return originalHead; 
   };
