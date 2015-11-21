@@ -32,37 +32,14 @@ var BSTMethods=  {
   },
   contains: function (value) {
     
-
-    if(this.value===value) {
+     if(this.value===value) {
       return true; 
-    } else {
-      if(this.left && this.right) {
-        if(this.right.value===value || this.left.value===value){
-          return true; 
-        } else {
-          return [this.left, this.right].some(function(child) {
-            return child.contains(value); 
-          }); 
-        }
-        
-      } else if (!this.left && this.right) {
-        if(this.right.value===value)  {
-          return true; 
-        } else {
-          return this.right.contains(value); 
-        }
-      } else if(this.left && !this.right){
-        if(this.left.value===value){
-          return true; 
-        } else {
+     } else if(value< this.value  && this.left) {
           return this.left.contains(value); 
-        }
-      } else {
-        return false; 
-      }
-    }
-    
-    return false; 
+     } else if( value >this.value && this.right){
+        return this.right.contains(value); 
+     }
+     return false; 
 
   },
   depthFirstLog: function (cb) {
