@@ -10,6 +10,7 @@ var Graph = function(){
 // ------------------------
 // Add a node to the graph, passing in the node's value.
 Graph.prototype.addNode = function(node){
+  //refactor into this.instance[node] ={}; 
   this.instance[node] =[]; 
 };
 
@@ -44,8 +45,12 @@ Graph.prototype.hasEdge = function(fromNode, toNode){
   var partners= this.instance[fromNode]; 
   var found= false; 
   for(var i=0; i<partners.length; i++) {
-    found= found || partners[i]===toNode; 
-    if (found) {break; }
+    if (partners[i]===toNode) {
+      found= true;
+      break; 
+    }
+    // found= found || partners[i]===toNode; 
+    // if (found) {break; }
   }
   return found; 
 };
@@ -53,6 +58,7 @@ Graph.prototype.hasEdge = function(fromNode, toNode){
 // ------------------------
 // Connects two nodes in a graph by adding an edge between them.
 Graph.prototype.addEdge = function(fromNode, toNode){
+  var partners; 
   partners= this.instance[fromNode]; 
   partners.push(toNode); 
   
@@ -63,7 +69,7 @@ Graph.prototype.addEdge = function(fromNode, toNode){
 // ------------------------
 // Remove an edge between any two specified (by value) nodes.
 Graph.prototype.removeEdge = function(fromNode, toNode){
-    var partners;
+  var partners;
   var idx; 
   partners= this.instance[fromNode]; 
   idx=partners.indexOf(toNode);
@@ -84,6 +90,13 @@ Graph.prototype.forEachNode = function(cb){
 
 /*
  * Complexity: What is the time complexity of the above functions?
+ addNode: o(1)
+ contains : o(|v|)
+ removeNode:o(|v|+ |e|)
+ hasEdge: o(|e|)
+ addEdge: o(1)
+ removeEdge: o(e)
+ forEachNode o(|v|); 
  */
 
 
