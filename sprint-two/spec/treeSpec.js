@@ -62,4 +62,24 @@ describe('tree', function() {
     expect(tree.children[1].value).to.equal(4);  
   }); 
 
+  it('should contain a "traverse" method ', function (){
+    expect(tree.traverse).to.be.a('function'); 
+  });
+
+  it('should execute "traverse" by calling a callback on each value in the tree', function () {
+    tree.addChild(5);
+    tree.addChild(6);
+    tree.addChild(4);
+
+    var doubled= [];  
+    tree.traverse(function (value) {
+      doubled.push(value*2); 
+    });
+
+    expect(doubled[0]).to.equal(2);
+    expect(doubled[1]).to.equal(10);
+    expect(doubled[2]).to.equal(12);
+    expect(doubled[3]).to.equal(8);
+  }); 
+
 });
