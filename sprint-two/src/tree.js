@@ -6,6 +6,7 @@ var Tree = function(value){
   newTree.addChild = treeMethods.addChild;
   newTree.contains= treeMethods.contains; 
   newTree.removeFromParent= treeMethods.removeFromParent; 
+  newTree.traverse= treeMethods.traverse; 
   
   // your code here
   newTree.children = [];  // fix me
@@ -68,6 +69,16 @@ treeMethods.removeFromParent= function (target) {
   }
 }
 
+treeMethods.traverse= function (cb) {
+  if(this.value) {
+    cb(this.value);
+  }
+  
+  //recurse on children
+  this.children.forEach(function(child) {
+    cb(child.value)
+  }, this); 
+}
 
 
 /*
