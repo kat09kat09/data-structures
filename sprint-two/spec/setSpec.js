@@ -24,4 +24,25 @@ describe('set', function() {
     expect(set.contains("Mel Gibson")).to.equal(false);
   });
 
+  it('should handle numbers and strings', function (){
+    set.add(1);
+    set.add('1'); 
+    set.remove('1');
+    expect(set.contains('1')).to.equal(false);
+    expect(set.contains(1)).to.equal(true); 
+  });
+
+  it('should handle objects of any type', function () {
+    set.add([1,2,3]);
+    set.add({bear:'salmon'});
+    set.add(1);
+    set.add('brown'); 
+    expect(set.contains({bear:'salmon'})).to.equal(true);
+    expect(set.contains([1,2,3])).to.equal(true); 
+    set.remove({bear:'salmon'});
+    expect(set.contains({bear:'salmon'})).to.equal(false);
+    set.remove([1,2,3]);
+    expect(set.contains([1,2,3])).to.equal(false); 
+  })
+
 });
