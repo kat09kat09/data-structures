@@ -4,7 +4,7 @@ var BinarySearchTree = function(value){
   newTree.value= value; 
   newTree.left= null;
   newTree.right= null; 
-  
+
   return newTree;
 };
 
@@ -58,10 +58,39 @@ var BSTMethods=  {
          this.left.depthFirstLog(cb); 
       } 
     
+  },
+  breadthFirstLog: function (results, level ){
+    level= level || [this]; 
+    results= results || []; 
+    var newLevel= []; 
+
+    if(!level.length) {
+      //no more items in the current level, you're done 
+      return results; 
+    }
+
+    level.forEach(function (node) {
+      if(node || node===0) {
+        results.push(node.value);
+      }
+
+      if(node.left) {
+        newLevel.push(node.left); 
+      } 
+      if(node.right) {
+        newLevel.push(node.right); 
+      }
+
+    }); 
+
+    return this.breadthFirstLog(results, newLevel); 
+
   }
   
 }
  
-/*
- * Complexity: What is the time complexity of the above functions?
- */
+ /*Complexity: What is the time complexity of the above functions?
+ insert: o(n)   / avg: o(log(n))
+ contains: o(n)  /  avg: o(log(n))
+ depthfirstlog: o(n)  / avg: o(log(n))
+*/
