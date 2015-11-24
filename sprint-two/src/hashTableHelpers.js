@@ -22,10 +22,11 @@ var LimitedArray = function(limit){
   limitedArray.set = function(index, value){
     checkLimit(index);
     storage[index] = value;
+    console.log('storage', storage); 
   };
-  limitedArray.each = function(callback){
+  limitedArray.each = function(callback, context){
     for(var i = 0; i < storage.length; i++){
-      callback(storage[i], i, storage);
+      callback.call(context, storage[i], i, storage);
     }
   };
 
